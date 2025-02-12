@@ -49,9 +49,10 @@
         img.src = dataURL;
         photoDiv.appendChild(img);
     
-        // Create download image feature
+        // Create and style download button
         var downloadBtn = document.createElement("button");
         downloadBtn.textContent = "Download";
+        downloadBtn.classList.add("download-btn");
         downloadBtn.addEventListener("click", () => {
             var a = document.createElement("a");
             a.href = dataURL;
@@ -62,4 +63,5 @@
         photoDiv.appendChild(downloadBtn);
         photosContainer.appendChild(photoDiv);
     }
+    
     
