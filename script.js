@@ -33,29 +33,33 @@
         var context = canvas.getContext("2d");
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
-
-        // Draw the current video frame to the canvas
+    
+        // Mirror the image when drawing
+        context.translate(canvas.width, 0);
+        context.scale(-1, 1);
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
         var dataURL = canvas.toDataURL("image/png");
-
+    
         // Create image list from captured photo
         var photoDiv = document.createElement("div");
         photoDiv.classList.add("photo");
-
+    
         var img = document.createElement("img");
         img.src = dataURL;
         photoDiv.appendChild(img);
-
+    
         // Create download image feature
         var downloadBtn = document.createElement("button");
         downloadBtn.textContent = "Download";
         downloadBtn.addEventListener("click", () => {
-          var a = document.createElement("a");
-          a.href = dataURL;
-          a.download = "photo.png";
-          a.click();
+            var a = document.createElement("a");
+            a.href = dataURL;
+            a.download = "photo.png";
+            a.click();
         });
-
+    
         photoDiv.appendChild(downloadBtn);
         photosContainer.appendChild(photoDiv);
-      }
+    }
+    
