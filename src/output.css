@@ -1,4 +1,5 @@
 /*! tailwindcss v4.0.6 | MIT License | https://tailwindcss.com */
+
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -692,18 +693,6 @@
       max-width: 96rem !important;
     }
   }
-  .mx-8 {
-    margin-inline: calc(var(--spacing) * 8);
-  }
-  .my-4 {
-    margin-block: calc(var(--spacing) * 4);
-  }
-  .my-8 {
-    margin-block: calc(var(--spacing) * 8);
-  }
-  .mb-24 {
-    margin-bottom: calc(var(--spacing) * 24);
-  }
   .box-border {
     box-sizing: border-box;
   }
@@ -791,12 +780,6 @@
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
-  .h-\[480px\] {
-    height: 480px;
-  }
-  .h-dvh {
-    height: 100dvh;
-  }
   .h-screen {
     height: 100vh;
   }
@@ -811,9 +794,6 @@
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
-  }
-  .w-\[640px\] {
-    width: 640px;
   }
   .w-screen {
     width: 100vw;
@@ -954,9 +934,6 @@
   }
   .animate-none {
     animation: none;
-  }
-  .cursor-pointer {
-    cursor: pointer;
   }
   .touch-pinch-zoom {
     --tw-pinch-zoom: pinch-zoom;
@@ -1223,9 +1200,6 @@
   .justify-items-stretch {
     justify-items: stretch;
   }
-  .gap-6 {
-    gap: calc(var(--spacing) * 6);
-  }
   .space-y-reverse {
     :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 1;
@@ -1319,12 +1293,6 @@
   }
   .rounded {
     border-radius: 0.25rem;
-  }
-  .rounded-full {
-    border-radius: calc(infinity * 1px);
-  }
-  .rounded-sm {
-    border-radius: var(--radius-sm);
   }
   .rounded-s {
     border-start-start-radius: 0.25rem;
@@ -1433,9 +1401,6 @@
   .border-solid {
     --tw-border-style: solid;
     border-style: solid;
-  }
-  .border-gray-600 {
-    border-color: var(--color-gray-600);
   }
   .bg-\(--my_variable\) {
     background-color: var(--my_variable);
@@ -1630,15 +1595,6 @@
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
-  .p-2 {
-    padding: calc(var(--spacing) * 2);
-  }
-  .px-2 {
-    padding-inline: calc(var(--spacing) * 2);
-  }
-  .px-4 {
-    padding-inline: calc(var(--spacing) * 4);
-  }
   .text-center {
     text-align: center;
   }
@@ -1681,21 +1637,17 @@
   .align-top {
     vertical-align: top;
   }
-  .text-6xl {
-    font-size: var(--text-6xl);
-    line-height: var(--tw-leading, var(--text-6xl--line-height));
-  }
-  .text-sm {
-    font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
   }
   .leading-none {
     --tw-leading: 1;
     line-height: 1;
   }
-  .font-black {
-    --tw-font-weight: var(--font-weight-black);
-    font-weight: var(--font-weight-black);
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
   }
   .text-balance {
     text-wrap: balance;
@@ -1770,11 +1722,8 @@
   .\[color\:red\]\/50\! {
     color: color-mix(in oklab, red 50%, transparent) !important;
   }
-  .text-gray-500 {
-    color: var(--color-gray-500);
-  }
-  .text-gray-600 {
-    color: var(--color-gray-600);
+  .text-red-600 {
+    color: var(--color-red-600);
   }
   .capitalize {
     text-transform: capitalize;
@@ -2219,37 +2168,6 @@
   .transform-view {
     transform-box: view-box;
   }
-  .hover\:bg-gray-600 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-gray-600);
-      }
-    }
-  }
-  .hover\:text-white {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-white);
-      }
-    }
-  }
-}
-@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
-body {
-  font-family: "Montserrat", serif;
-  font-weight: 400;
-  font-style: normal;
-  background-color: #f5f3ff;
-}
-h1 {
-  font-family: "Darumadrop One", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-p,a, button, input {
-  font-family: "Montserrat", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
 }
 @keyframes spin {
   to {
