@@ -1,59 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
     <title>Document</title>
-</head>
-    <style>
+  </head>
+  <style>
     @import url("https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-    
+
     #photos {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 20px;
-      }
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
 
-      .photo {
-        margin: 10px;
-        position: relative;
-      }
+    .photo {
+      margin: 10px;
+      position: relative;
+    }
 
-      .photo img {
-        width: 160px;
-        height: 120px;
-        border: 2px solid #333;
-      }
+    .photo img {
+      width: 160px;
+      height: 120px;
+      border: 2px solid #333;
+    }
 
-      .photo button {
-        position: absolute;
-        bottom: 5px;
-        left: 27.5%;
-        padding: 5px;
-        cursor: pointer;
-      }
+    .photo button {
+      position: absolute;
+      bottom: 5px;
+      left: 27.5%;
+      padding: 5px;
+      cursor: pointer;
+    }
 
-      video {
-        transform: scaleX(-1); /* Flip horizontally */
-        -webkit-transform: scaleX(-1);
-      }
+    video {
+      transform: scaleX(-1); /* Flip horizontally */
+      -webkit-transform: scaleX(-1);
+    }
+  </style>
+  <body>
+    <div
+      class="h-dvh flex flex-col justify-center items-center text-center mx-6"
+    >
+      <h1 class="text-6xl text-gray-600">lemme see your smile :)</h1>
+      <video autoplay id="video" class="my-8 w-[640px] h-[480px]"></video>
 
-    </style>
-<body>
-    <div class="h-dvh flex flex-col justify-center items-center text-center mx-8">
-        <h1 class="text-6xl text-gray-600">lemme see your smile :)</h1>
-        <video autoplay id="video" class="my-8 w-[640px] h-[480px]"></video>
-        
-    <div class="flex gap-6">
-        <input class="px-2 border border-gray-600 rounded-sm" type="number" id="timer" min="0" placeholder="Timer (Sec)" />
-        <button id="capture-btn" class="border cursor-pointer text-md border-gray-600 rounded-full p-2 px-4 hover:bg-gray-600 hover:text-white transition">Capture</button>
+      <div class="flex flex-col sm:flex-row gap-2 sm:gap-6 w-full max-w-[640px]">
+        <input class="px-2 py-2 border w-full border-gray-600 rounded-sm" type="number" id="timer" min="0" placeholder="Timer (Sec)" />
+        <button id="capture-btn" class="border cursor-pointer text-md border-gray-600 rounded-full p-2 px-4 w-full sm:w-auto hover:bg-gray-600 hover:text-white transition">Capture</button>
     </div>
+    
 
-    <!-- photo taken will show here -->
-    <div id="photos"></div>
-
+      <!-- photo taken will show here -->
+      <div id="photos"></div>
     </div>
-</body>
+  </body>
 </html>
 <script src="script.js"></script>
