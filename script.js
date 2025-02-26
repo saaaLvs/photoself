@@ -1,67 +1,111 @@
-      var video = document.getElementById("video");
-      var captureBtn = document.getElementById("capture-btn");
-      var photosContainer = document.getElementById("photos");
-      var timerInput = document.getElementById("timer");
+const video = document.getElementById("video");
+const countdownEl = document.getElementById("countdown");
+const counterEl = document.getElementById("counter");
+const shutterOverlay = document.createElement("div");
+shutterOverlay.style.position = "absolute";
+shutterOverlay.style.top = "0";
+shutterOverlay.style.left = "0";
+shutterOverlay.style.width = "100%";
+shutterOverlay.style.height = "100%";
+shutterOverlay.style.background = "white";
+shutterOverlay.style.opacity = "0";
+shutterOverlay.style.transition = "opacity 0.2s ease-out";
+document.body.appendChild(shutterOverlay);
 
-      // Access the camera and stream to video
-      navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-        video.srcObject = stream;
-      });
+const shutterSound = new Audio("shutter.mp3");
+const countdownSound = new Audio("countdown.mp3");
 
-      // Capture photo with timer
-      captureBtn.addEventListener("click", () => {
-        var timer = timerInput.value - 1;
-        if (timer > 0) {
-          captureBtn.disabled = true;
-          var countdown = setInterval(() => {
-            captureBtn.textContent = `Capture (${timer})`;
-            if (timer <= 0) {
-              clearInterval(countdown);
-              captureBtn.textContent = "Capture";
-              captureBtn.disabled = false;
-              capturePhoto();
-            }
-            timer--;
-          }, 1000);
-        } else {
-          capturePhoto();
-        }
-      });
+const capturedPhotos = [];
+let capturedCount = 0;
 
-      function capturePhoto() {
-        var canvas = document.createElement("canvas");
-        var context = canvas.getContext("2d");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-    
-        // Mirror the image when drawing
-        context.translate(canvas.width, 0);
-        context.scale(-1, 1);
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-        var dataURL = canvas.toDataURL("image/png");
-    
-        // Create image list from captured photo
-        var photoDiv = document.createElement("div");
-        photoDiv.classList.add("photo");
-    
-        var img = document.createElement("img");
-        img.src = dataURL;
-        photoDiv.appendChild(img);
-    
-        // Create and style download button
-        var downloadBtn = document.createElement("button");
-        downloadBtn.textContent = "Download";
-        downloadBtn.classList.add("download-btn");
-        downloadBtn.addEventListener("click", () => {
-            var a = document.createElement("a");
-            a.href = dataURL;
-            a.download = "photo.png";
-            a.click();
-        });
-    
-        photoDiv.appendChild(downloadBtn);
-        photosContainer.appendChild(photoDiv);
+// Adjust constraints for mobile
+const isMobile = window.innerWidth <= 600;
+const videoConstraints = {
+    video: {
+        facingMode: "user", // Use front camera on mobile
+        width: isMobile ? { ideal: 480 } : { ideal: 640 },
+        height: isMobile ? { ideal: 640 } : { ideal: 480 }
     }
-    
-    
+};
+
+// Fix for mobile Chrome black screen issue
+video.setAttribute("playsinline", true);
+video.setAttribute("autoplay", true);
+video.setAttribute("muted", true);
+
+// Start webcam
+navigator.mediaDevices.getUserMedia(videoConstraints)
+    .then(stream => {
+        video.srcObject = stream;
+        video.play();
+        startCaptureProcess();
+    })
+    .catch(err => console.error("Camera access denied", err));
+
+// Start auto capture process
+function startCaptureProcess() {
+    capturePhotoWithCountdown();
+}
+
+// Countdown and capture photo
+function capturePhotoWithCountdown() {
+    if (capturedCount >= 4) {
+        redirectToDownload();
+        return;
+    }
+
+    let timeLeft = 3;
+    countdownEl.textContent = "capture in " + timeLeft + "...";
+    counterEl.textContent = `${capturedCount}/4`;
+    countdownSound.play();
+    const countdownInterval = setInterval(() => {
+        timeLeft--;
+        countdownEl.textContent = "capture in " + timeLeft + "...";
+        countdownSound.play();
+
+        if (timeLeft === 1) {
+            triggerShutterAnimation();
+        }
+
+        if (timeLeft <= 1) {
+            clearInterval(countdownInterval);
+            capturePhoto();
+        }
+    }, 1000);
+}
+
+// Capture photo
+function capturePhoto() {
+    const canvas = document.createElement("canvas");
+    canvas.width = isMobile ? 480 : 640;
+    canvas.height = isMobile ? 640 : 480;
+    const ctx = canvas.getContext("2d");
+
+    // Flip canvas horizontally for front camera
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    capturedPhotos.push(canvas.toDataURL("image/png"));
+    capturedCount++;
+    counterEl.textContent = `${capturedCount}/4`;
+
+    // Continue to next photo
+    setTimeout(capturePhotoWithCountdown, 1000);
+}
+
+// Shutter animation
+function triggerShutterAnimation() {
+    shutterOverlay.style.opacity = "1";
+    shutterSound.play();
+    setTimeout(() => {
+        shutterOverlay.style.opacity = "0";
+    }, 100);
+}
+
+// Redirect to download page with captured images
+function redirectToDownload() {
+    sessionStorage.setItem("capturedPhotos", JSON.stringify(capturedPhotos));
+    window.location.href = "download.html";
+}
