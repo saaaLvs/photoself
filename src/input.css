@@ -1,8 +1,9 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
 
+
 body{
-    font-family: "Montserrat", serif;
+    font-family: "Sour Gummy", serif;
     font-weight: 400;
     font-style: normal;
     background-color: #fffaf3;
@@ -16,7 +17,7 @@ h1{
     font-style: normal;
 }
 p,a, button, input{
-    font-family: "Montserrat", serif;
+    font-family: "Sour Gummy", serif;
     font-optical-sizing: auto;
     font-style: normal;
 }

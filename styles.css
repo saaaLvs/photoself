@@ -698,12 +698,6 @@
   .my-4 {
     margin-block: calc(var(--spacing) * 4);
   }
-  .my-6 {
-    margin-block: calc(var(--spacing) * 6);
-  }
-  .my-8 {
-    margin-block: calc(var(--spacing) * 8);
-  }
   .my-10 {
     margin-block: calc(var(--spacing) * 10);
   }
@@ -1402,6 +1396,10 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-0 {
+    border-style: var(--tw-border-style);
+    border-width: 0px;
+  }
   .border-x {
     border-inline-style: var(--tw-border-style);
     border-inline-width: 1px;
@@ -1484,6 +1482,9 @@
   }
   .bg-red-500\/\[50\%\] {
     background-color: color-mix(in oklab, var(--color-red-500) 50%, transparent);
+  }
+  .bg-red-800 {
+    background-color: var(--color-red-800);
   }
   .-bg-conic {
     --tw-gradient-position: in oklab;
@@ -1663,6 +1664,9 @@
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
+  }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
@@ -1731,14 +1735,6 @@
   .font-black {
     --tw-font-weight: var(--font-weight-black);
     font-weight: var(--font-weight-black);
-  }
-  .font-bold {
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
-  }
-  .font-semibold {
-    --tw-font-weight: var(--font-weight-semibold);
-    font-weight: var(--font-weight-semibold);
   }
   .text-balance {
     text-wrap: balance;
@@ -1816,9 +1812,6 @@
   .text-blue-800 {
     color: var(--color-blue-800);
   }
-  .text-gray-50 {
-    color: var(--color-gray-50);
-  }
   .text-gray-500 {
     color: var(--color-gray-500);
   }
@@ -1827,6 +1820,9 @@
   }
   .text-red-800 {
     color: var(--color-red-800);
+  }
+  .text-yellow-50 {
+    color: var(--color-yellow-50);
   }
   .capitalize {
     text-transform: capitalize;
@@ -2271,6 +2267,13 @@
   .transform-view {
     transform-box: view-box;
   }
+  .hover\:bg-blue-800 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-blue-800);
+      }
+    }
+  }
   .hover\:bg-gray-600 {
     &:hover {
       @media (hover: hover) {
@@ -2303,7 +2306,7 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
 body {
-  font-family: "Montserrat", serif;
+  font-family: "Sour Gummy", serif;
   font-weight: 400;
   font-style: normal;
   background-color: #fffaf3;
@@ -2316,7 +2319,7 @@ h1 {
   font-style: normal;
 }
 p,a, button, input {
-  font-family: "Montserrat", serif;
+  font-family: "Sour Gummy", serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
